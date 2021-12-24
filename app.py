@@ -7,7 +7,3 @@ app = Flask(__name__)
 app.config.from_object(Configuration)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
-if __name__ == "__main__":
-    from routes import *
-    app.run()
