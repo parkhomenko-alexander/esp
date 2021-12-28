@@ -11,6 +11,6 @@ def request_data(co_2, t_voc):
     return('da')
 
 @app.route('/', methods=['GET'])
-def index(co_2, t_voc):
+def index():
     
     return('q')
