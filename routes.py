@@ -17,5 +17,4 @@ def index():
 
 @app.route('/show_chart', methods=['GET'])
 def show_chart():
-    render_template('index.html')
-    return('q')
+    return render_template('index.html')
