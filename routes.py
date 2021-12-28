@@ -9,3 +9,8 @@ def request_data(co_2, t_voc):
     requested_data.save_to_db()
     print(requested_data)
     return('da')
+
+@app.route('/', methods=['GET'])
+def index(co_2, t_voc):
+    
+    return('q')
