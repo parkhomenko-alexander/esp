@@ -1,7 +1,7 @@
 from app import app 
 from models import Data
 from datetime import datetime
-import render_template
+from flask import render_template
 
 @app.route('/request/<int:co_2>/<int:t_voc>', methods=['GET'])
 def request_data(co_2, t_voc):
