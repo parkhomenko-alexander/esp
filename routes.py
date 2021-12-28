@@ -1,6 +1,7 @@
 from app import app 
 from models import Data
 from datetime import datetime
+import render_template
 
 @app.route('/request/<int:co_2>/<int:t_voc>', methods=['GET'])
 def request_data(co_2, t_voc):
@@ -12,5 +13,9 @@ def request_data(co_2, t_voc):
 
 @app.route('/', methods=['GET'])
 def index():
-    
+    return('q')
+
+@app.route('/show_chart', methods=['GET'])
+def show_chart():
+    render_template('index.html')
     return('q')
