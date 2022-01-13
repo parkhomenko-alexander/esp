@@ -35,7 +35,7 @@
                             <a href="#" class="nav-link waves-effect">CO2</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link waves-effect">TVOC</a>
+                            <a href="{{url_for('show_chart_tvoc')}}" class="nav-link waves-effect">TVOC</a>
                         </li>
                     </ul>
                 </div>
@@ -68,8 +68,8 @@
                     titleFontColor: "#4F81BC",
                     includeZero: true,
                     suffix: "ppm",
-                    minimum: 2050,
-                    maximum: 2100
+                    minimum: 1830,
+                    maximum: 1870
                 },
                 axisX: {
                     minimum: 0

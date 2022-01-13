@@ -32,10 +32,10 @@
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link waves-effect">CO2</a>
+                            <a href="{{url_for('show_chart_co')}}" class="nav-link waves-effect">CO2</a>
                         </li>
                         <li class="nav-item active">
-                            <a href="tvoc.html" class="nav-link waves-effect">TVOC</a>
+                            <a href="#" class="nav-link waves-effect">TVOC</a>
                         </li>
                     </ul>
                 </div>
@@ -68,8 +68,8 @@
                     titleFontColor: "#4F81BC",
                     includeZero: true,
                     suffix: "ppb",
-                    minimum: 850,
-                    maximum: 1000
+                    minimum: 490,
+                    maximum: 530
                 },
                 axisX: {
                     minimum: 0
