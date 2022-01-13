@@ -36,7 +36,7 @@ def get_data_co(arr_length):
 @app.route('/get_data_tvoc/<arr_length>', methods=['GET'])
 def get_data_tvoc(arr_length):    
     data = db.session.query(Data).order_by(Data.id.desc()).first()
-    response_data = f'[[{int(arr_length) + 1},{data.tvoc}]]'
+    response_data = f'[[{int(arr_length) + 1},{data.t_voc}]]'
     
     response = make_response(response_data, 200)
     response.headers.add("Access-Control-Allow-Origin", "*")
