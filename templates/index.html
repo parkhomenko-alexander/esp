@@ -60,14 +60,14 @@
             var dataPoints = [];
 
             var chart = new CanvasJS.Chart("chartContainer", {
-
+                theme: "light2",
                 title: {
                     text: "CO2"
                 },
                 axisY: {
                     titleFontColor: "#4F81BC",
                     includeZero: true,
-                    suffix: "",
+                    suffix: "ppm",
                     minimum: 2050,
                     maximum: 2100
                 },
@@ -77,7 +77,7 @@
                 data: [{
                     indexLabelFontColor: "darkSlateGray",
                     name: "views",
-                    type: "area",
+                    type: "splineArea",
 
                     dataPoints: dataPoints
                 }]
