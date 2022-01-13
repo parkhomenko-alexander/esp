@@ -23,7 +23,7 @@ def show_chart():
 
 @app.route('/get_data/<arr_length>', methods=['GET'])
 def get_data(arr_length):    
-    data = db.session.query(Data).order_by(Data.id.desc()).first()
+    data = app.db.session.query(Data).order_by(Data.id.desc()).first()
     response_data = f'[[{int(arr_length) + 1},{data.co_2}]]'
     
     response = make_response(response_data, 200)
