@@ -16,14 +16,27 @@ def request_data(co_2, t_voc):
 def index():
     return('q')
 
-@app.route('/show_chart', methods=['GET'])
-def show_chart():
-    return render_template('index.html')
+@app.route('/show_chart_co', methods=['GET'])
+def show_chart_co():
+    return render_template('co.html')
 
-@app.route('/get_data/<arr_length>', methods=['GET'])
-def get_data(arr_length):    
+@app.route('/show_chart_tvoc', methods=['GET'])
+def show_chart_tvoc():
+    return render_template('tvoc.html')
+
+@app.route('/get_data_co/<arr_length>', methods=['GET'])
+def get_data_co(arr_length):    
     data = db.session.query(Data).order_by(Data.id.desc()).first()
     response_data = f'[[{int(arr_length) + 1},{data.co_2}]]'
+    
+    response = make_response(response_data, 200)
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+@app.route('/get_data_tvoc/<arr_length>', methods=['GET'])
+def get_data_tvoc(arr_length):    
+    data = db.session.query(Data).order_by(Data.id.desc()).first()
+    response_data = f'[[{int(arr_length) + 1},{data.tvoc}]]'
     
     response = make_response(response_data, 200)
     response.headers.add("Access-Control-Allow-Origin", "*")
