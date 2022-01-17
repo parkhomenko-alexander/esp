@@ -31,18 +31,24 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="
 			#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle 
 			navigation"><span class="navbar-toggler-icon"></span></button>
-                {% block nav_content %}
+
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav mr-auto">
+                        {% block nav_content %}
                         <li class="nav-item">
                             <a href="{{url_for('show_chart_co')}}" class="nav-link waves-effect">CO2</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{url_for('show_chart_tvoc')}}" class=" nav-link waves-effect">TVOC</a>
                         </li>
+                        {% endblock %}
+                        <li class="nav-item">
+                            <a href="{{url_for('index')}}" class=" nav-link waves-effect">Просмотр параметров
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                {% endblock %}
+
             </div>
         </nav>
     </header>
@@ -67,8 +73,25 @@
             <label for="second">Tvoc</label>
         </div>
 
-        <p class="datepicker__button" id="chart-button"> График</p>
+        <div class="datepicker__buttons">
+            <p class="datepicker__button" id="chart-button"> График</p>
+            <p class="datepicker__button" id="data-button"> Данные</p>
+        </div>
+
     </div>
+
+    <div id="chartContainer" class="co2" margin=5px auto>
+        <div class="card">
+            <div class="card-body">
+                <canvas id="myCharrt"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../static/js/datepicker.js"></script>
+    <script src="../static/js/paginator.js"></script>
+
     {% endblock %}

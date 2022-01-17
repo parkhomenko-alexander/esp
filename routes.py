@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 def request_data(co_2, t_voc):
     time = datetime.now()
     hour_add = timedelta(hours=10)
-    cur_with_timezone = (time + hour_add).strftime("%Y-%m-%d %H:%M:%S")
+    cur_with_timezone = (time + hour_add).strftime('%Y-%m-%d %H:%M:%S')
     requested_data = Data(co_2=co_2, t_voc=t_voc, time=cur_with_timezone)
     requested_data.save_to_db()
     print(requested_data)
@@ -47,27 +47,70 @@ def get_data_tvoc(arr_length):
 @app.route('/get_data_charts', methods=['GET'])
 def get_data_charts():    
     chart_type = request.args.get('chart_type')
-    start = request.args.get('time_line_start')
+    start =request.args.get('time_line_start')
     end = request.args.get('time_line_end')
-    print(start)
-
-    print(start)
-
+ 
     #!
     from engine import engine
     Session = sessionmaker(bind=engine)
     session = Session()
-    res = session.query(Data).filter(Data.time.between(start,end)).all()
-    print(res)
 
-    #!
+    #!   print(res, max_elem, min_elem)
+
 
     if chart_type == 'none':
         response = make_response({},200)
     elif chart_type == 'co':
+        res = session.query(Data).filter(Data.time.between(start,end)).all()
 
-        response = make_response({'co':'true'}, 200)
+        max_elem = max(res).co_2
+        min_elem = min(res).co_2
+
+        for i in range(len(res)):
+            res[i] = {'x': i, 'y': res[i].co_2} 
+
+        response = make_response({'type':'CO 2',
+                                'max_val':max_elem,
+                                'min_val':min_elem,
+                                'data_point': res}, 200)
     else:
-        response = make_response({'tvoc':'true'}, 200)
+        res = session.query(Data).filter(Data.time.between(start,end)).all()
+
+        for i in range(len(res)):
+            res[i] = res[i].t_voc
+
+        max_elem = max(res)
+        min_elem = min(res)
+
+        for i in range(len(res)):
+            res[i] = {'x': i, 'y': res[i]} 
+
+        response = make_response({'type':'TVOC',
+                                'max_val':max_elem,
+                                'min_val':min_elem,
+                                'data_point': res}, 200)
     
+    return response
+
+@app.route('/get_data', methods=['GET'])
+def get_data():
+    start =request.args.get('time_line_start')
+    end = request.args.get('time_line_end')
+    
+    #!
+    from engine import engine
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    #!   print(res, max_elem, min_elem)
+
+    res = session.query(Data).filter(Data.time.between(start, end)).all()
+    for i in range(len(res)):
+        res[i] = {'id': res[i].id, 
+                   'co 2': res[i].co_2,
+                   'tvoc': res[i].t_voc,
+                   'time': res[i].time} 
+
+    response = make_response(res, 200)
+                            
     return response

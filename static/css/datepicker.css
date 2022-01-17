@@ -51,3 +51,7 @@
     height: 20px;
     width: 20px;
 }
+
+.datepicker__buttons {
+    display: flex;
+}
