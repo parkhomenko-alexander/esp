@@ -1,20 +1,21 @@
 from app import app, db
 from models import Data
-from datetime import datetime
-from flask import render_template, session, make_response
+from datetime import datetime,timedelta
+from flask import render_template, session, make_response, request
 from sqlalchemy.orm import sessionmaker
 
 @app.route('/request/<int:co_2>/<int:t_voc>', methods=['GET'])
 def request_data(co_2, t_voc):
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    requested_data = Data(co_2=co_2, t_voc=t_voc, time=time)
+    hour_add = timedelta(hours=10)
+    requested_data = Data(co_2=co_2, t_voc=t_voc, time=time+hour_add)
     requested_data.save_to_db()
     print(requested_data)
     return('da')
 
 @app.route('/', methods=['GET'])
 def index():
-    return('q')
+     return render_template('header.html')
 
 @app.route('/show_chart_co', methods=['GET'])
 def show_chart_co():
@@ -41,4 +42,31 @@ def get_data_tvoc(arr_length):
     response = make_response(response_data, 200)
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+
+@app.route('/get_data_charts', methods=['GET'])
+def get_data_charts():    
+    chart_type = request.args.get('chart_type')
+    start = request.args.get('time_line_start')
+    end = request.args.get('time_line_end')
+    print(start)
+
+    print(start)
+
+    #!
+    from engine import engine
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    res = session.query(Data).filter(Data.time.between(start,end)).all()
+    print(res)
+
+    #!
+
+    if chart_type == 'none':
+        response = make_response({},200)
+    elif chart_type == 'co':
+
+        response = make_response({'co':'true'}, 200)
+    else:
+        response = make_response({'tvoc':'true'}, 200)
     
+    return response
