@@ -12,10 +12,10 @@ chartButton.addEventListener("click", function () {
     timeLineE = endDate.value + ' ' + endTime.value;
 
     if (radioCo.checked) {
-        var promise = axios.get('http://localhost:5000/get_data_charts?chart_type=co&time_line_start=' + timeLineS +
+        var promise = axios.get('http://157.230.191.9:8085/get_data_charts?chart_type=co&time_line_start=' + timeLineS +
             '&time_line_end=' + timeLineE);
     } else if (radioTvoc.checked) {
-        var promise = axios.get('http://localhost:5000/get_data_charts?chart_type=tvoc&time_line_start=' + timeLineS +
+        var promise = axios.get('http://157.230.191.9:8085/get_data_charts?chart_type=tvoc&time_line_start=' + timeLineS +
             '&time_line_end=' + timeLineE);
     } else {
         return;
