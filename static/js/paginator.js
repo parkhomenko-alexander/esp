@@ -44,7 +44,7 @@ dataButton.addEventListener("click", function () {
         paginatorList.parentNode.parentNode.classList.add('paginator-with-chart');
     }
 
-    var promise = axios.get('http://localhost:5000/get_data?time_line_start=' + timeLineS + '&time_line_end=' + timeLineE);
+    var promise = axios.get('http://157.230.191:8085/get_data?time_line_start=' + timeLineS + '&time_line_end=' + timeLineE);
     removeAllChildNodes(paginatorList);
     removeAllChildNodes(paginatorSwitcher);
     promise.then((data) => {
