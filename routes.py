@@ -133,5 +133,17 @@ def get_data():
 
 @app.route('/delete_data', methods=['POST'])
 def delete_data():
-    print(request.form.get('removeItems'))
+    items_to_remove = request.form.get('removeItems').split(',')
+    print(items_to_remove)
+ 
+    # from engine import engine
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
+
+    for item in items_to_remove:
+        res = db.session.query(Data).filter(Data.id == item).first()
+        session.delete(res)
+    
+    session.commit()
+
     return {}, 200

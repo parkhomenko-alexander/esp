@@ -338,7 +338,7 @@ function markUnmarkToDeletion(checkbox) {
     let result = needRemoveItems.indexOf(indexes[0]);
     if (result === -1) {
         needRemoveItems.push(indexes[0]);
-        needRemoveItemsIndexInArray.push(indexes[1])
+        needRemoveItemsIndexInArray.push(parseInt(indexes[1]))
     }
     else {
         needRemoveItems.splice(result, 1);
@@ -356,8 +356,7 @@ function deleteData(needRemoveItems) {
     }
     var bodyFormData = new FormData();
     bodyFormData.append('removeItems', needRemoveItems);
-
-    var promise = axios.post('http://localhost:5000/delete_data', bodyFormData);
+    var promise = axios.post('http://157.230.191.9:8085/delete_data', bodyFormData);
     removeAllChildNodes(paginatorList);
     removeAllChildNodes(paginatorSwitcher);
     promise.then((data) => {
