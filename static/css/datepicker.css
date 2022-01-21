@@ -28,11 +28,10 @@
     background-color: #2196f3 !important;
     justify-content: center;
     border-radius: 10px;
-}
-
-.datepicker__button:hover {
     cursor: pointer;
 }
+
+
 
 .datepicker__radio {
     display: flex;

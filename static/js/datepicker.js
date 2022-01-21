@@ -38,7 +38,7 @@ chartButton.addEventListener("click", function () {
                 includeZero: true,
                 suffix: "ppm",
                 minimum: data.data['min_val'],
-                maximum: data.data['max_val']
+                maximum: data.data['max_val'] + 5
             },
             axisX: {
                 minimum: 0
@@ -51,6 +51,9 @@ chartButton.addEventListener("click", function () {
                 dataPoints: dataPoints
             }]
         });
+
+        var paginatorList = document.getElementById("paginator-list");
+        paginatorList.parentNode.parentNode.classList.add('paginator-with-chart');
 
         chart.render();
     });

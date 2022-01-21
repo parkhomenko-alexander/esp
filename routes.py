@@ -94,7 +94,7 @@ def get_data_charts():
 
 @app.route('/get_data', methods=['GET'])
 def get_data():
-    start =request.args.get('time_line_start')
+    start = request.args.get('time_line_start')
     end = request.args.get('time_line_end')
     
     #!
@@ -107,10 +107,13 @@ def get_data():
     res = session.query(Data).filter(Data.time.between(start, end)).all()
     for i in range(len(res)):
         res[i] = {'id': res[i].id, 
-                   'co 2': res[i].co_2,
+                   'co': res[i].co_2,
                    'tvoc': res[i].t_voc,
-                   'time': res[i].time} 
+                   'time': res[i].time.strftime('%Y-%m-%d %H:%M:%S')} 
+    print(res)
+    return {'data': res}, 200
 
-    response = make_response(res, 200)
-                            
-    return response
+@app.route('/delete_data', methods=['POST'])
+def delete_data():
+    print(request.form.get('removeItems'))
+    return {}, 200
