@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 @app.route('/request/<int:co_2>/<int:t_voc>', methods=['GET'])
 def request_data(co_2, t_voc):
+    # заменить на нижний
     time = datetime.now()
     hour_add = timedelta(hours=10)
     cur_with_timezone = (time + hour_add).strftime('%Y-%m-%d %H:%M:%S')
@@ -13,6 +14,23 @@ def request_data(co_2, t_voc):
     requested_data.save_to_db()
     print(requested_data)
     return('da')
+
+# @app.route('/request_data', methods=['GET'])
+# def request_data():
+#     co_2 = request.args.get('co_2')
+#     t_voc =request.args.get('t_voc')
+#     time = datetime.now()
+#     hour_add = timedelta(hours=10)
+#     cur_with_timezone = (time + hour_add).strftime('%Y-%m-%d %H:%M:%S')
+#     requested_data = Data(co_2=co_2, t_voc=t_voc, time=cur_with_timezone)
+#     requested_data.save_to_db()
+#     print(requested_data)
+#     return('da')
+
+# @app.route('/configure_ scheme', methods=['GET'])
+# def configure_ scheme():
+#      define delation
+#      return {'delay':1000},200
 
 @app.route('/', methods=['GET'])
 def index():
@@ -97,14 +115,14 @@ def get_data():
     start = request.args.get('time_line_start')
     end = request.args.get('time_line_end')
     
-    #!
-    from engine import engine
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    # #!
+    # from engine import engine
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
 
-    #!   print(res, max_elem, min_elem)
+    # #!   print(res, max_elem, min_elem)
 
-    res = session.query(Data).filter(Data.time.between(start, end)).all()
+    res = db.session.query(Data).filter(Data.time.between(start, end)).all()
     for i in range(len(res)):
         res[i] = {'id': res[i].id, 
                    'co': res[i].co_2,
