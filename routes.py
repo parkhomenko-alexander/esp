@@ -50,18 +50,18 @@ def get_data_charts():
     start =request.args.get('time_line_start')
     end = request.args.get('time_line_end')
  
-    #!
-    from engine import engine
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    #!   print(res, max_elem, min_elem)
+    # 
+    # from engine import engine
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
+    # res = session.query(Data).filter(Data.time.between(start,end)).all()
+    # 
 
 
     if chart_type == 'none':
         response = make_response({},200)
     elif chart_type == 'co':
-        res = session.query(Data).filter(Data.time.between(start,end)).all()
+        res = db.session.query(Data).filter(Data.time.between(start,end)).all()
 
         max_elem = max(res).co_2
         min_elem = min(res).co_2
@@ -74,7 +74,7 @@ def get_data_charts():
                                 'min_val':min_elem,
                                 'data_point': res}, 200)
     else:
-        res = session.query(Data).filter(Data.time.between(start,end)).all()
+        res = db.session.query(Data).filter(Data.time.between(start,end)).all()
 
         for i in range(len(res)):
             res[i] = res[i].t_voc
