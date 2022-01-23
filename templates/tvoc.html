@@ -7,7 +7,10 @@
 <li class="nav-item active">
     <a href="#" class="nav-link waves-effect">TVOC</a>
 </li>
-
+<li class="nav-item">
+    <a href="{{url_for('index')}}" class=" nav-link waves-effect">Просмотр параметров
+    </a>
+</li>
 {% endblock %}
 
 {% block content %}
@@ -35,8 +38,8 @@
                 titleFontColor: "#4F81BC",
                 includeZero: true,
                 suffix: "ppb",
-                minimum: 15,
-                maximum: 25
+                minimum: 90,
+                maximum: 100
             },
             axisX: {
                 minimum: 0
