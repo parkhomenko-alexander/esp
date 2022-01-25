@@ -143,6 +143,6 @@ def delete_data():
         res = db.session.query(Data).filter(Data.id == item).first()
         db.session.delete(res)
     
-    session.commit()
+    db.session.commit()
 
     return {}, 200
