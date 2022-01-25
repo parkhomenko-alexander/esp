@@ -31,6 +31,7 @@
         let delay;
         var promise = axios.get('http://157.230.191.9:8085/configure_scheme');
         promise.then((data) => {
+            console.log(data.data);
             dalay = data.data['delay'];
         });
         var dataPoints = [];
