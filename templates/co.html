@@ -27,7 +27,12 @@
 <script type="text/javascript"></script>
 <script>
     window.onload = function () {
-
+        let delay;
+        var promise = axios.get('http://157.230.191.9:8085/configure_scheme');
+        promise.then((data) => {
+            console.log(data.data['delay']);
+            delay = data.data['delay'];
+        });
         var dataPoints = [];
 
         var chart = new CanvasJS.Chart("chartContainer", {
@@ -65,7 +70,7 @@
             newDataCount++;
             console.log(dataPoints)
             chart.render();
-            setTimeout(updateData, 1000);
+            setTimeout(updateData, delay);
         }
 
         function updateData() {
