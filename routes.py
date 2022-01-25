@@ -29,7 +29,7 @@ def request_data():
 
 @app.route('/configure_scheme', methods=['GET'])
 def configure_scheme():
-    return {'delay':6000},200
+    return {'delay':3000},200
 
 @app.route('/', methods=['GET'])
 def index():
