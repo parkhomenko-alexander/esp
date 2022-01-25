@@ -4,21 +4,9 @@ from datetime import datetime,timedelta
 from flask import render_template, session, make_response, request
 from sqlalchemy.orm import sessionmaker
 
-@app.route('/request/<int:co_2>/<int:t_voc>', methods=['GET'])
-def request_data(co_2, t_voc):
-    # заменить на нижний
-    time = datetime.now()
-    hour_add = timedelta(hours=10)
-    cur_with_timezone = (time + hour_add).strftime('%Y-%m-%d %H:%M:%S')
-    requested_data = Data(co_2=co_2, t_voc=t_voc, time=cur_with_timezone)
-    requested_data.save_to_db()
-    print(requested_data)
-    return('da')
-
-# @app.route('/request_data', methods=['GET'])
-# def request_data():
-#     co_2 = request.args.get('co_2')
-#     t_voc =request.args.get('t_voc')
+# @app.route('/request/<int:co_2>/<int:t_voc>', methods=['GET'])
+# def request_data(co_2, t_voc):
+#     # заменить на нижний
 #     time = datetime.now()
 #     hour_add = timedelta(hours=10)
 #     cur_with_timezone = (time + hour_add).strftime('%Y-%m-%d %H:%M:%S')
@@ -26,6 +14,18 @@ def request_data(co_2, t_voc):
 #     requested_data.save_to_db()
 #     print(requested_data)
 #     return('da')
+
+@app.route('/request_data', methods=['GET'])
+def request_data():
+    co_2 = request.args.get('co_2')
+    t_voc =request.args.get('t_voc')
+    time = datetime.now()
+    hour_add = timedelta(hours=10)
+    cur_with_timezone = (time + hour_add).strftime('%Y-%m-%d %H:%M:%S')
+    requested_data = Data(co_2=co_2, t_voc=t_voc, time=cur_with_timezone)
+    requested_data.save_to_db()
+    print(requested_data)
+    return('da')
 
 # @app.route('/configure_ scheme', methods=['GET'])
 # def configure_ scheme():
