@@ -141,7 +141,7 @@ def delete_data():
 
     for item in items_to_remove:
         res = db.session.query(Data).filter(Data.id == item).first()
-        session.delete(res)
+        db.session.delete(res)
     
     session.commit()
 
