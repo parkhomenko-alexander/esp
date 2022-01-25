@@ -24,9 +24,15 @@
 <script type="text/javascript" src="../static/js/mdb.min.js"></script>
 <!-- Your custom scripts (optional) -->
 <script type="text/javascript"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
     window.onload = function () {
-
+        let delay;
+        var promise = axios.get('http://157.230.191.9:8085/configure_scheme');
+        promise.then((data) => {
+            console.log(data);
+        });
         var dataPoints = [];
 
         var chart = new CanvasJS.Chart("chartContainer", {
