@@ -27,10 +27,9 @@ def request_data():
     print(requested_data)
     return('da')
 
-# @app.route('/configure_ scheme', methods=['GET'])
-# def configure_ scheme():
-#      define delation
-#      return {'delay':1000},200
+@app.route('/configure_scheme', methods=['GET'])
+def configure_scheme():
+    return {'delay':1000},200
 
 @app.route('/', methods=['GET'])
 def index():
