@@ -1,0 +1,128 @@
+body{
+    height: 100vh;
+    margin:0;
+    font-family: "Roboto",sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.wrapper{
+    height:inherit;
+    display:flex;
+    align-items: center;
+}
+
+.wrapper__info{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+
+.info__description{
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.info__tabs{
+    display:flex;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.tabs__tab{
+    margin: 60px;
+    width: 280px;
+    height: 80px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #2196f3;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+
+.tabs__tab:hover{
+    background-color: #2287d9;
+}
+
+
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    box-shadow: 1px 1px 2px 1px rgba(34, 60, 80, 0.2);
+    border-radius: 0.25rem;
+
+    --fields-text-margin: 30px 30px 0 30px;
+    --font-size: 20px;
+}
+
+.form_wrapper__error{
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size); 
+    margin: var(--fields-text-margin);
+    background-color: rgb(246, 77, 77);
+    border-radius: 0.25rem;
+    /* height: calc(var(--font-size)*2); */
+    padding:4px 4px 4px 20px;
+}
+
+.form_wrapper__field{
+    margin: var(--fields-text-margin);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size); 
+}
+
+.field__label{
+    color: #323232;
+    padding-left: 20px;
+}
+
+.field__input{
+    font-size: inherit;
+    margin: 5px 0 0 0;
+    height: calc(var(--font-size)*2);
+    padding-left: 20px;
+    color: #323232;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.field__input::placeholder {
+    color: #000000;
+    opacity: 0.4;
+  }
+
+
+.field__input:focus {
+    color: #4f545a;
+    border-color: #bdbdbd;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.wrapper__button{
+    font-size: var(--font-size); 
+    margin: 30px;
+    height: calc(var(--font-size)*2);
+    background-color: #2196f3;
+    border-radius: 0.25rem;
+    border: 0;
+    cursor: pointer;
+}
+
+.wrapper__button:hover{
+    background-color: #2287d9;
+}

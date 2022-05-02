@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/index.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esp8266</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="wrapper__info">
+            <a class="info__description">
+                Система мониторинга параметров воздуха
+            </a>
+            <div class="info__tabs">
+                <a class="tabs__tab" href="{{url_for('user_bp.login')}}">
+                    Войти
+                </a>
+                <a class="tabs__tab" href="{{url_for('user_bp.register')}}">
+                    Зарегистрироваться
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
