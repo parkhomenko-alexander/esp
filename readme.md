@@ -1,0 +1,1 @@
+[![очень красивый хлястик](https://github.com/parkhomenko-alexander/esp/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/parkhomenko-alexander/esp/actions/workflows/ci-cd.yml)
