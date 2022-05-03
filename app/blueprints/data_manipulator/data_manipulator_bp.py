@@ -21,6 +21,9 @@ def check_token(f):
     @wraps(f)
     def verify_decorator(*args, **kwargs):
         token = request.cookies.get('access_token_cookie')
+        if token == None:
+            response = make_response(redirect(url_for('user_bp.login')))
+            return response
         token = decode_token(token, allow_expired=True)
         print(token)
         if datetime.now().timestamp() > token['exp']:
