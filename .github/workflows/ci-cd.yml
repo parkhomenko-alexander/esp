@@ -45,4 +45,7 @@ jobs:
         key: ${{ secrets.KEY }}
         
         script: |
-          ls -la
+          cd esp_data
+          docker ps -a
+          docker-compose up --build
+          docker ps -a
