@@ -1,5 +1,6 @@
-__pycache__
-.env
-.gaz
-engine.py
-data_gen.py
+app/__pycache__
+app/.env
+app/.gaz
+app/engine.py
+app/data_gen.py
+app/.pytest_cache
