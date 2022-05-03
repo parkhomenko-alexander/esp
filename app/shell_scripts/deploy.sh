@@ -1,4 +1,4 @@
 git add -A
-echo 'commit msg:' read msg
+read -p 'commit msg:' msg
 git commit -m msg
 git push origin master
