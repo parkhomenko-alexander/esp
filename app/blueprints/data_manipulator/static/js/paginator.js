@@ -44,7 +44,7 @@ dataButton.addEventListener("click", function () {
         paginatorList.parentNode.parentNode.classList.add('paginator-with-chart');
     }
 
-    var promise = axios.get('http://localhost:5000/data_manipulator/get_data?time_line_start=' + timeLineS + '&time_line_end=' + timeLineE);
+    var promise = axios.get('http://46.101.102.163:5000/data_manipulator/get_data?time_line_start=' + timeLineS + '&time_line_end=' + timeLineE);
     removeAllChildNodes(paginatorList);
     removeAllChildNodes(paginatorSwitcher);
     promise.then((data) => {
@@ -359,7 +359,7 @@ function deleteData(needRemoveItems) {
     console.log(document.cookie)
     console.log(document)
     axios.defaults.withCredentials = true
-    var promise = axios.post('http://localhost:5000/data_manipulator/delete_data', bodyFormData);
+    var promise = axios.post('http://46.101.102.163:5000/data_manipulator/delete_data', bodyFormData);
     removeAllChildNodes(paginatorList);
     removeAllChildNodes(paginatorSwitcher);
     promise.then((data) => {
