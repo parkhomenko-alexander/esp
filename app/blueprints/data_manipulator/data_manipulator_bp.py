@@ -87,14 +87,6 @@ def get_data_charts():
     chart_type = request.args.get('chart_type')
     start =request.args.get('time_line_start')
     end = request.args.get('time_line_end')
- 
-    # 
-    # from engine import engine
-    # Session = sessionmaker(bind=engine)
-    # session = Session()
-    # res = session.query(Data).filter(Data.time.between(start,end)).all()
-    # 
-
 
     if chart_type == 'none':
         response = make_response({},200)
@@ -134,13 +126,6 @@ def get_data_charts():
 def get_data():
     start = request.args.get('time_line_start')
     end = request.args.get('time_line_end')
-    
-    # #!
-    # from engine import engine
-    # Session = sessionmaker(bind=engine)
-    # session = Session()
-
-    # #!   print(res, max_elem, min_elem)
 
     res = db.session.query(Data).filter(Data.time.between(start, end)).all()
     for i in range(len(res)):
@@ -160,10 +145,7 @@ def delete_data():
     response = make_response({}, 200)
     response.headers.add("Access-Control-Allow-Origin", "*")
     print(request.cookies)
-    # from engine import engine
-    # Session = sessionmaker(bind=engine)
-    # session = Session()
-
+ 
     for item in items_to_remove:
         res = db.session.query(Data).filter(Data.id == item).first()
         db.session.delete(res)

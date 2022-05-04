@@ -76,7 +76,7 @@ class User(db.Model, UserMixin):
     def error_handling_login(dict_arguments, *args, **kwargs):
         
         if not User.is_exist_user(kwargs['login']):
-            dict_arguments['error'] = 'Позьватель не зарегестрирован'
+            dict_arguments['error'] = 'Пользователь не зарегестрирован'
             return dict_arguments 
     
         if 'pas' == '' or not User.authenticate(kwargs['login'], kwargs['pas']):
