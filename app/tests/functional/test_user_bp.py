@@ -9,3 +9,5 @@ def test_user_bp_login_with_fixture(test_client):
     data = response.data.decode("utf-8")
     assert response.status_code == 200
     assert 'Войти' in data
+
+
