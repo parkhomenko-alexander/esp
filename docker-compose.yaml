@@ -1,15 +1,6 @@
 version: "3"
 services:
-  python:
-    build: ./app
-    container_name: app
-    command: gunicorn --bind 0.0.0.0:5000 main:app
-    ports:
-      - 5000:5000
-    depends_on:
-      - db
-
-  db:
+    db:
     image: mysql:5.7
     container_name: db
     ports:
@@ -19,3 +10,12 @@ services:
     volumes:
       - ./mysql-dump:/docker-entrypoint-initdb.d
       - ./mysql:/var/lib/mysql
+
+    python:
+    build: ./app
+    container_name: app
+    command: gunicorn --bind 0.0.0.0:5000 main:app
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
