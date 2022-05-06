@@ -5,4 +5,3 @@ ADD . /app
 RUN apk update && apk add gcc libc-dev make git libffi-dev openssl-dev python3-dev libxml2-dev libxslt-dev 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN flask db upgrade
