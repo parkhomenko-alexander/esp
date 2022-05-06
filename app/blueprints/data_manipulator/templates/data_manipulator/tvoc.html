@@ -37,7 +37,7 @@
         let delay;
         let maxVal;
 
-        var promiseMaxVal = axios.get('http://127.0.0.1:5000/user/max-value', { withCredentials: true });
+        var promiseMaxVal = axios.get('http://46.101.102.163:5000/user/max-value', { withCredentials: true });
         promiseMaxVal.then((data) => {
             console.log(data.data['tvoc']);
             maxVal = data.data['tvoc'];
@@ -92,8 +92,8 @@
         }
 
         function updateData() {
-            // $.getJSON("http://46.101.102.163:5000/data_manipulator/get_data_tvoc/" + newDataCount, addData);
-            $.getJSON("http://localhost:5000/data_manipulator/get_data_tvoc/" + newDataCount, addData);
+            $.getJSON("http://46.101.102.163:5000/data_manipulator/get_data_tvoc/" + newDataCount, addData);
+            // $.getJSON("http://localhost:5000/data_manipulator/get_data_tvoc/" + newDataCount, addData);
         }
 
     }

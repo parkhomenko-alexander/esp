@@ -37,14 +37,14 @@
         let delay;
         let maxVal;
 
-        var promiseMaxVal = axios.get('http://127.0.0.1:5000/user/max-value', { withCredentials: true });
+        var promiseMaxVal = axios.get('http://46.101.102.163:5000/user/max-value', { withCredentials: true });
         promiseMaxVal.then((data) => {
             console.log(data.data['co']);
             maxVal = data.data['co'];
         });
 
-        // var promise = axios.get('http://46.101.102.163:5000/micro_scheme/configure_scheme');
-        var promise = axios.get('http://localhost:5000/micro_scheme/configure_scheme');
+        var promise = axios.get('http://46.101.102.163:5000/micro_scheme/configure_scheme');
+        // var promise = axios.get('http://localhost:5000/micro_scheme/configure_scheme');
         promise.then((data) => {
             console.log(data.data['delay']);
             delay = data.data['delay'];
@@ -94,8 +94,8 @@
         }
 
         function updateData() {
-            // $.getJSON("http://46.101.102.163:5000/data_manipulator/get_data_co/" + newDataCount, addData);
-            $.getJSON("http://localhost:5000/data_manipulator/get_data_co/" + newDataCount, addData);
+            $.getJSON("http://46.101.102.163:5000/data_manipulator/get_data_co/" + newDataCount, addData);
+            // $.getJSON("http://localhost:5000/data_manipulator/get_data_co/" + newDataCount, addData);
         }
 
     }
