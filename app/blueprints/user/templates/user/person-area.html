@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Личный кабинет</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href={{ url_for('data_manipulator_bp.static', filename='css/bootstrap.min.css' ) }}>
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href={{ url_for('data_manipulator_bp.static', filename='/css/mdb.min.css' ) }}>
+    <link rel="stylesheet" href={{ url_for('.static', filename='/css/person-area.css' ) }}>
+
+    <!-- Your custom styles (optional) -->
+</head>
+
+<body class="grey lighten-3">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light white scrolling-navbar">
+            <div class="container">
+                <a href="{{url_for('data_manipulator_bp.index')}}" class="navbar-brand waves-effect"><strong
+                        class="blue-text">ESP8266</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="
+			#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle 
+			navigation"><span class="navbar-toggler-icon"></span></button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav mr-auto">
+                        {% block nav_content %}
+                        <li class="nav-item">
+                            <a href="{{url_for('data_manipulator_bp.show_chart_co')}}"
+                                class="nav-link waves-effect">CO2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url_for('data_manipulator_bp.show_chart_tvoc')}}"
+                                class=" nav-link waves-effect">TVOC</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{url_for('data_manipulator_bp.index')}}" class=" nav-link waves-effect">Просмотр
+                                параметров
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{url_for('user_bp.person_area')}}" class=" nav-link waves-effect">Личный кабинет
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a href="{{url_for('user_bp.log_out')}}" class=" nav-link waves-effect mar-left">Выход
+                            </a>
+                        </li>
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <form action={{ dict_arguments['action'] }} method="post">
+        <div class="form-wrapper">
+            {% if 'error' in dict_arguments %}
+            <div class="form_wrapper__error">
+                {{dict_arguments['error']}}
+            </div>
+            {% endif %}
+            {% block form_fields %}
+            {% endblock %}
+            <div class="form_wrapper__field">
+                <p class="field__label">Логин</p>
+                <p class="field__input">{{ dict_arguments['sub'] }}</p>
+            </div>
+            <div class="form_wrapper__field">
+                <p class="field__label">Пороговые значения</p>
+
+                <label class="field__label" for="co_normal">Углекислый газ</label>
+                <input type="text" name="co_normal" id="co_normal" placeholder="Норма углекислого газа"
+                    value={{dict_arguments['co']}} class="field__input">
+
+                <label class="field__label" for="tvoc_normal">Загрязение</label>
+                <input type="text" name="tvoc_normal" id="tvoc_normal" placeholder="Норма загязнения"
+                    value={{dict_arguments['tvoc']}} class="field__input">
+            </div>
+
+            <input type="submit" class="wrapper__button" value='Изменить'>
+        </div>
+    </form>
+
+    <body>

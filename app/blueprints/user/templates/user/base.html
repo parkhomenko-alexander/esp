@@ -22,7 +22,8 @@
             {% block form_fields %}
             {% endblock %}
 
-            <input type="submit" class="wrapper__button" value={% block button_text %} {% endblock %}>
+            {% block form_buttons %}
+            {% endblock %}
         </div>
     </form>
 

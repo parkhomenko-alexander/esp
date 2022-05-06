@@ -45,6 +45,15 @@
                             <a href="{{url_for('.index')}}" class=" nav-link waves-effect">Просмотр параметров
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{url_for('user_bp.person_area')}}" class=" nav-link waves-effect">Личный кабинет
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a href="{{url_for('user_bp.log_out')}}" class=" nav-link waves-effect mar-left">Выход
+                            </a>
+                        </li>
                         {% endblock %}
                     </ul>
                 </div>

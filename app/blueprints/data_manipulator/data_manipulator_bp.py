@@ -1,10 +1,8 @@
 from flask import Blueprint, render_template, session, make_response, request, url_for, redirect
 from models import Data, User, db
-from sqlalchemy.orm import sessionmaker
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import jwt_required, decode_token, unset_access_cookies
-from functools import wraps
-
+from middleware.middleware import check_token
 
 from inspect import signature
 
@@ -15,25 +13,6 @@ data_manipulator_bp = Blueprint('data_manipulator_bp',
                                 template_folder='templates',
                                 static_folder='static')
 
-
-
-def check_token(f):
-    @wraps(f)
-    def verify_decorator(*args, **kwargs):
-        token = request.cookies.get('access_token_cookie')
-        if token == None:
-            response = make_response(redirect(url_for('user_bp.login')))
-            return response
-        token = decode_token(token, allow_expired=True)
-        print(token)
-        if datetime.now().timestamp() > token['exp']:
-            response = make_response(redirect(url_for('user_bp.login')))
-            unset_access_cookies(response)
-            return response
-        else:
-            return f(*args, **kwargs)
-
-    return verify_decorator
 
 @data_manipulator_bp.route('/request_data', methods=['GET'])
 def request_data():

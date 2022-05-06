@@ -33,6 +33,9 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(128), nullable=False, unique=True)
     pas = db.Column(db.String(256), nullable=False)
+    co_normal = db.Column(db.Integer, nullable=False)
+    tvoc_normal = db.Column(db.Integer, nullable=False)
+
 
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
@@ -98,6 +101,18 @@ class User(db.Model, UserMixin):
         token = create_access_token(identity=self.login)
         return token
 
+    @staticmethod
+    def change_normal_values(login, co, tvoc):
+        user = User.query.filter(User.login == login).first()
+        user.co_normal = co
+        user.tvoc_normal = tvoc
+        user.save_to_db()
+        return 0;
+
+    @staticmethod
+    def get_normal_values(login):
+        user = User.query.filter(User.login == login).first()
+        return user.co_normal, user.tvoc_normal
 
     def save_to_db(self):
         db.session.add(self)

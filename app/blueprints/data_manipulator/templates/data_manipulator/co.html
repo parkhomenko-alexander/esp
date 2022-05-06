@@ -11,18 +11,23 @@
     <a href="{{url_for('.index')}}" class=" nav-link waves-effect">Просмотр параметров
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{url_for('user_bp.person_area')}}" class="nav-link waves-effect">Личный кабинет
+    </a>
+</li>
 {% endblock %}
 
 {% block content %}
 
 <!-- jQuery -->
-<script type="text/javascript" src={{ url_for('.static', filename='/static/js/jquery.min.js' ) }}></script>
+<script type="text/javascript" src={{ url_for('.static', filename='js/jquery.min.js' ) }}></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src={{ url_for('.static', filename='/static/js/popper.min.js' ) }}></script>
+<script type="text/javascript" src={{ url_for('.static', filename='js/popper.min.js' ) }}></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src={{ url_for('.static', filename='static/js/bootstrap.min.js' ) }}></script>
+<script type="text/javascript" src={{ url_for('.static', filename='js/bootstrap.min.js' ) }}></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src={{ url_for('.static', filename='/static/js/mdb.min.js' ) }}></script>
+<script type="text/javascript" src={{ url_for('.static', filename='/js/mdb.min.js' ) }}></script>
+<link rel="stylesheet" href="{{ url_for('.static', filename='/css/error.css' ) }}">
 <!-- Your custom scripts (optional) -->
 <script type="text/javascript"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -30,7 +35,16 @@
 <script>
     window.onload = function () {
         let delay;
-        var promise = axios.get('http://46.101.102.163:5000/micro_scheme/configure_scheme');
+        let maxVal;
+
+        var promiseMaxVal = axios.get('http://127.0.0.1:5000/user/max-value', { withCredentials: true });
+        promiseMaxVal.then((data) => {
+            console.log(data.data['co']);
+            maxVal = data.data['co'];
+        });
+
+        // var promise = axios.get('http://46.101.102.163:5000/micro_scheme/configure_scheme');
+        var promise = axios.get('http://localhost:5000/micro_scheme/configure_scheme');
         promise.then((data) => {
             console.log(data.data['delay']);
             delay = data.data['delay'];
@@ -46,8 +60,8 @@
                 titleFontColor: "#4F81BC",
                 includeZero: true,
                 suffix: "ppm",
-                minimum: 1010,
-                maximum: 1020
+                // minimum: 1010,
+                // maximum: 1020
             },
             axisX: {
                 minimum: 0
@@ -67,6 +81,10 @@
         updateData();
 
         function addData(data) {
+            if (parseInt(data[0][1]) > maxVal) {
+                errorElem = document.getElementsByClassName('error');
+                errorElem[0].classList.remove("not-active");
+            }
             dataPoints.push({ x: data[0][0], y: parseInt(data[0][1]) });
             xValue++;
             newDataCount++;
@@ -76,7 +94,8 @@
         }
 
         function updateData() {
-            $.getJSON("http://46.101.102.163:5000/data_manipulator/get_data_co/" + newDataCount, addData);
+            // $.getJSON("http://46.101.102.163:5000/data_manipulator/get_data_co/" + newDataCount, addData);
+            $.getJSON("http://localhost:5000/data_manipulator/get_data_co/" + newDataCount, addData);
         }
 
     }
@@ -84,6 +103,9 @@
 </head>
 
 <body>
+    <div class="error not-active">
+        Зафиксировано превышение
+    </div>
     <div id="chartContainer" class="co2">
         <div class="card">
             <div class="card-body">

@@ -1,7 +1,7 @@
 {% extends "user/base.html" %}
 
 {% block title %}
-{{ dict_arguments['title'] }}
+Вход
 {% endblock %}
 
 {% block form_action %}
@@ -11,17 +11,18 @@
 {% block form_fields %}
 <div class="form_wrapper__field">
     <label class="field__label" for="login">Логин</label>
-    <input type="text" name="login" id="login" placeholder="Login" value="" class="field__input">
+    <input type="text" name="login" id="login" placeholder="Login" value="zzzzz" class="field__input">
 </div>
 
 <div class="form_wrapper__field">
     <label class="field__label" for="pas">Пароль</label>
-    <input type="password" name="pas" id="pas" placeholder="Password" value="" class="field__input">
+    <input type="password" name="pas" id="pas" placeholder="Password" value="z" class="field__input">
 </div>
 
 {% endblock %}
 
 
-{% block button_text %}
-{{dict_arguments['button_title']}}
+{% block form_buttons %}
+<input type="submit" class="wrapper__button" value='Войти'>
+<a href="{{url_for('.register')}}" class="wrapper__button">Зарегестрироваться</a>
 {% endblock %}

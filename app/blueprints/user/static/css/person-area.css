@@ -1,61 +1,9 @@
 body{
-    height: 100vh;
-    margin:0;
-    font-family: "Roboto",sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: Roboto;
 }
-
-
-.wrapper{
-    height:inherit;
-    display:flex;
-    align-items: center;
-}
-
-.wrapper__info{
-    display: flex;
-    width: fit-content;
-    margin: auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;  
-}
-
-.info__description{
-    font-size: 30px;
-    text-transform: uppercase;
-}
-
-.info__tabs{
-    display:flex;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-.tabs__tab{
-    margin: 60px;
-    width: 280px;
-    height: 80px;
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: #2196f3;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-
-
-.tabs__tab:hover{
-    background-color: #2287d9;
-}
-
 
 .form-wrapper{
+    margin:50px;
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -98,6 +46,8 @@ body{
     border: 1px solid #bdbdbd;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 
 .field__input::placeholder {
