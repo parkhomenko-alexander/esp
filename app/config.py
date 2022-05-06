@@ -9,5 +9,5 @@ class Configuration(object):
     STATIC_FOLDER = 'static'
     JWT_TOKEN_LOCATION = 'cookies'
     JWT_COOKIE_CSRF_PROTECT = False
-    #/ JWT_ACCESS_COOKIE_PATH = ['/data_manipulator/', '/user/']
+    JWT_ACCESS_COOKIE_PATH = '/'
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(seconds=1000)
