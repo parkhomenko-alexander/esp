@@ -9,7 +9,7 @@
     /* background-color: rgb(246, 77, 77); */
     border-radius: 0.25rem;
     font-size: 25px;
-    animation:blinking 3s infinite;
+    animation:blinking 1s infinite;
 }
 @keyframes blinking{
     0%{background-color:rgb(255, 146, 146)}
