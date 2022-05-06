@@ -13,7 +13,7 @@
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href={{ url_for('.static', filename='css/bootstrap.min.css' ) }}>
+    <link rel="stylesheet" href={{ url_for('.static', filename='/css/bootstrap.min.css' ) }}>
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href={{ url_for('.static', filename='/css/mdb.min.css' ) }}>
     <!-- Your custom styles (optional) -->
@@ -97,6 +97,21 @@
         </div>
     </div>
 
+    <div class="parametrs" id="parameters">
+        <div class="paremeters__elem">
+            <div class="elem__name">Среднее значение</div>
+            <div class="elem__amount" id="average"></div>
+        </div>
+        <div class="paremeters__elem">
+            <div class="elem__name">Наибольшее значение</div>
+            <div class="elem__amount" id="max"></div>
+        </div>
+        <div class="paremeters__elem">
+            <div class="elem__name">Нименьшее значение</div>
+            <div class="elem__amount" id="min"></div>
+        </div>
+    </div>
+
     <div class="paginator-wrapper">
         <div class="paginator">
             <ul class="paginator__list" id="paginator-list">
@@ -111,6 +126,6 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src={{ url_for('.static', filename='/js/datepicker.js' ) }}></script>
-    <script src={{ url_for('.static', filename='js/paginator.js' ) }}></script>
+    <script src={{ url_for('.static', filename='/js/paginator.js' ) }}></script>
 
     {% endblock %}

@@ -12,10 +12,10 @@ chartButton.addEventListener("click", function () {
     timeLineE = endDate.value + ' ' + endTime.value;
 
     if (radioCo.checked) {
-        var promise = axios.get('http://46.101.102.163:5000/data_manipulator/get_data_charts?chart_type=co&time_line_start=' + timeLineS +
+        var promise = axios.get('http://127.0.0.1:5000/data_manipulator/get_data_charts?chart_type=co&time_line_start=' + timeLineS +
             '&time_line_end=' + timeLineE);
     } else if (radioTvoc.checked) {
-        var promise = axios.get('http://46.101.102.163:5000/data_manipulator/get_data_charts?chart_type=tvoc&time_line_start=' + timeLineS +
+        var promise = axios.get('http://127.0.0.1:5000/data_manipulator/get_data_charts?chart_type=tvoc&time_line_start=' + timeLineS +
             '&time_line_end=' + timeLineE);
     } else {
         return;
@@ -24,6 +24,8 @@ chartButton.addEventListener("click", function () {
     promise.then((data) => {
         console.log(data.data);
         console.log(data.data['data_point']);
+        console.log(data.data['average']);
+
 
         var dataPoints = data.data['data_point'];
         console.log(dataPoints)
@@ -51,9 +53,25 @@ chartButton.addEventListener("click", function () {
                 dataPoints: dataPoints
             }]
         });
+        // .parametrs-with-chart
+        var parameters = document.getElementById("parameters");
+        parameters.classList.add('parameters-with-chart');
+        document.getElementById("average").innerText = data.data['average'];
+        if (data.data['average'] > data.data['normal']) {
+            document.getElementById("average").style.backgroundColor = 'rgb(255, 65, 65)';
+        }
 
-        var paginatorList = document.getElementById("paginator-list");
-        paginatorList.parentNode.parentNode.classList.add('paginator-with-chart');
+        document.getElementById("max").innerText = data.data['max_val'];
+        if (data.data['max_val'] > data.data['normal']) {
+            document.getElementById("max").style.backgroundColor = 'rgb(255, 65, 65)';
+        }
+
+        document.getElementById("min").innerText = data.data['min_val'];
+        console.log(data.data['min_val'], data.data['normal'])
+        if (data.data['min_val'] > data.data['normal']) {
+            document.getElementById("min").style.backgroundColor = 'rgb(255, 65, 65)';
+        }
+
 
         chart.render();
     });

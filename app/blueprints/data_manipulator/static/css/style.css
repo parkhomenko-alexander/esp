@@ -4,11 +4,29 @@
 }
 
 .co2 {
-    margin: 0 auto 700px auto;
+    margin: 0 auto 100px auto;
     flex: 0 91.666667%;
     max-width: 91.666667%;
 }
 
 .navbar .nav-item .nav-link {
     border-radius: 5%;
+}
+
+.parametrs{
+    display: flex;
+    max-width: 91.666667%;
+    justify-content: space-between;
+    margin: 50px auto 100px auto;
+}
+
+.parameters-with-chart {
+    margin: 500px auto 0 auto;
+}
+
+.elem__amount{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius: 5px;
 }

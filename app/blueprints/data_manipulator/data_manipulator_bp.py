@@ -67,6 +67,10 @@ def get_data_charts():
     start =request.args.get('time_line_start')
     end = request.args.get('time_line_end')
 
+    token = request.cookies.get('access_token_cookie')
+    token = decode_token(token, allow_expired=True)
+    normal_values = User.get_normal_values(token['sub'])
+    print(normal_values)
     if chart_type == 'none':
         response = make_response({},200)
     elif chart_type == 'co':
@@ -74,13 +78,20 @@ def get_data_charts():
 
         max_elem = max(res).co_2
         min_elem = min(res).co_2
+        sum = 0
 
         for i in range(len(res)):
+            sum += res[i].co_2
             res[i] = {'x': i, 'y': res[i].co_2} 
+      
+        sum /= len(res)
+
 
         response = make_response({'type':'CO 2',
                                 'max_val':max_elem,
                                 'min_val':min_elem,
+                                'average': round(sum),
+                                'normal': normal_values[0],
                                 'data_point': res}, 200, {"Access-Control-Allow-Origin": "*"})
     else:
         res = db.session.query(Data).filter(Data.time.between(start,end)).all()
@@ -90,13 +101,18 @@ def get_data_charts():
 
         max_elem = max(res)
         min_elem = min(res)
+        sum = 0
 
         for i in range(len(res)):
-            res[i] = {'x': i, 'y': res[i]} 
+            sum += res[i]
+            res[i] = {'x': i, 'y': res[i]}
+        sum /= len(res)
 
         response = make_response({'type':'TVOC',
                                 'max_val':max_elem,
                                 'min_val':min_elem,
+                                'average': round(sum),
+                                 'normal': normal_values[1],
                                 'data_point': res}, 200 , {"Access-Control-Allow-Origin": "*"})
     
     return response
