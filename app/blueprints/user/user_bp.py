@@ -29,8 +29,8 @@ def login():
             return render_template('user/login.html', dict_arguments=dict_arguments)
         else:
             user = User(**user_data)
-            response = make_response(redirect(url_for('data_manipulator_bp.index')))
-            # response = make_response(redirect(url_for('.person_area')))
+            # response = make_response(redirect(url_for('data_manipulator_bp.index')))
+            response = make_response(redirect(url_for('.person_area')))
 
             token = user.get_access_token()
             print(token)
